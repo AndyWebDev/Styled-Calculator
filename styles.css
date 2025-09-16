@@ -18,24 +18,35 @@
 
 body {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 1rem;
-  /* Multi-stop gradient with white blended in */
   background: linear-gradient(
     120deg,
     var(--color-background) 0%,
     #ffffff 40%,
     #b0b0b0 100%
   );
-  background-size: 200% 200%; /* bigger than viewport to allow movement */
+  background-size: 200% 200%;
   animation: shine 8s ease-in-out infinite alternate;
-  overflow: hidden;
+  overflow-x: hidden;
   color: #333;
+  padding: 1rem; /* small padding so content never touches screen edges */
+}
+
+/* Brand heading */
+h1 {
+  margin-bottom: 40px;
+  text-align: center;
+  font-size: 2.2rem;
+  background: linear-gradient(to left, #22d3ee, #9333ea);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 /* Keyframes to “slide” the gradient for a subtle shine */
@@ -46,21 +57,6 @@ body {
   100% {
     background-position: 100% 50%;
   }
-}
-
-/* Brand heading – untouched as requested */
-h1 {
-  text-align: center;
-  position: absolute;
-  top: 120px;
-  padding: 5px;
-  margin-bottom: 20px;
-  font-size: 2.2rem;
-  background: linear-gradient(to left, #22d3ee, #9333ea);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
 }
 
 /* Calculator wrapper */
@@ -74,7 +70,7 @@ h1 {
     -8px -8px 16px var(--color-shadow-light);
   display: flex;
   flex-direction: column;
-  gap: 20px; /* consistent spacing between screen & buttons */
+  gap: 20px;
 }
 
 /* Display area */
@@ -130,4 +126,48 @@ button:hover {
 }
 .buttons .operator:hover {
   color: #fff;
+}
+
+/* ---------------------- */
+/*      RESPONSIVE        */
+/* ---------------------- */
+
+/* For small tablets and large phones */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+  }
+
+  #calculator {
+    max-width: 95%;
+    padding: 20px;
+    gap: 16px;
+  }
+
+  #result {
+    font-size: 1.2rem;
+    padding: 10px 14px;
+  }
+
+  button {
+    padding: 16px;
+    font-size: 1.1rem;
+  }
+}
+
+/* Very small phones (narrower than ~400px) */
+@media (max-width: 400px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .buttons {
+    gap: 8px;
+  }
+
+  button {
+    padding: 14px;
+    font-size: 1rem;
+  }
 }
